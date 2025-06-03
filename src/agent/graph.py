@@ -10,7 +10,7 @@ from typing import Dict, List, Any, Optional
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import StateGraph, END, START
 from langgraph.types import Command
-from langgraph.checkpoint.memory import MemorySaver
+
 
 # CopilotKit imports
 from copilotkit import CopilotKitState
@@ -97,9 +97,10 @@ async def chat_node(state: AgentState, config: RunnableConfig):
     )
 
     # Bind the tools to the model
+    copilotkit_actions = state.get("copilotkit", {}).get("actions", [])
     model_with_tools = model.bind_tools(
         [
-            *state["copilotkit"]["actions"],
+            *copilotkit_actions,
             WRITE_DOCUMENT_TOOL
         ],
         # Disable parallel tool calls to avoid race conditions
