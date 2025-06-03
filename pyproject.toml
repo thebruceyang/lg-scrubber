@@ -1,35 +1,34 @@
-[project]
-name = "agent"
-version = "0.0.1"
-description = "Starter template for making a new agent LangGraph."
-authors = [
-    { name = "William Fu-Hinthorn", email = "13333726+hinthornw@users.noreply.github.com" },
-]
+[tool.poetry]
+name = "scrubber"
+version = "0.1.0"
+description = ""
+authors = ["Markus Ecker <markus.ecker@gmail.com>"]
 readme = "README.md"
-license = { text = "MIT" }
-requires-python = ">=3.9"
-dependencies = [
-    "langgraph>=0.2.6",
-    "python-dotenv>=1.0.1",
+
+packages = [
+    { include = "agent", from = "src" }
 ]
 
-
-[project.optional-dependencies]
-dev = ["mypy>=1.11.1", "ruff>=0.6.1"]
+[tool.poetry.dependencies]
+python = ">=3.12,<3.23"
+copilotkit = { version = "0.1.46", python = ">=3.10,<3.13" }
+tavily-python = "^0.5.1"
+uvicorn = "^0.34.0"
+dotenv = "^0.9.9"
+crewai =  { version = "0.118.0", python = ">=3.10,<3.13" }
+langchain = ">=0.1.0"
+langchain-core = ">=0.1.5"
+langchain-community = ">=0.0.1"
+langchain-experimental = ">=0.0.11"
+langchain-openai = ">=0.0.1"
+langgraph = "^0.4.8"
 
 [build-system]
-requires = ["setuptools>=73.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
-[tool.setuptools]
-packages = ["langgraph.templates.agent", "agent"]
-[tool.setuptools.package-dir]
-"langgraph.templates.agent" = "src/agent"
-"agent" = "src/agent"
-
-
-[tool.setuptools.package-data]
-"*" = ["py.typed"]
+[tool.poetry.scripts]
+langgraph_server = "agent.langgraph_server:main"
 
 [tool.ruff]
 lint.select = [
