@@ -187,4 +187,4 @@ workflow.add_edge("start_flow", "chat_node")
 workflow.add_edge("chat_node", END)
 
 # Compile the graph
-predictive_state_updates_graph = workflow.compile(checkpointer=MemorySaver())
+graph = workflow.compile()
