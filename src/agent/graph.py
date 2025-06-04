@@ -79,7 +79,7 @@ async def chat_node(state: AgentState, config: RunnableConfig):
     """
 
     # Define the model
-    model = ChatOpenAI(model="gpt-4o")
+    model = ChatOpenAI(model="gpt-4.1-nano-2025-04-14")
     
     # Define config for the model with emit_intermediate_state to stream tool calls to frontend
     if config is None:
